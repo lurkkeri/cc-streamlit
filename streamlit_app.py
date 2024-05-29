@@ -1,18 +1,47 @@
 import streamlit as st
 import pandas as pd
 import joblib
+import sklearn
 
-# Load the pickled model
+import nltk
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('wordnet')
+
+import re
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+
 model = joblib.load('spam_model.pkl')
 
-print(model)
+def preprocess_text(text):
+    lemmatizer = WordNetLemmatizer()
+    stop_words = set(stopwords.words('english'))
+    
+    # Remove non-alphabetic characters and lower the case
+    text = re.sub(r'[^a-zA-Z]', ' ', text)
+    text = text.lower()
+    
+    # Tokenize and remove stopwords
+    tokens = word_tokenize(text)
+    tokens = [word for word in tokens if word not in stop_words]
+    
+    # Lemmatize tokens
+    tokens = [lemmatizer.lemmatize(word) for word in tokens]
+    
+    return ' '.join(tokens)
 
-# Define a function to make predictions using the loaded model
 def predict(input_data):
+    # Ensure input_data is in a DataFrame
+    input_df = pd.DataFrame([input_data], columns=['text'])
+    
     # Perform any necessary preprocessing on the input_data
+    input_df['text'] = input_df['text'].apply(preprocess_text)
+    
     # Make predictions using the model
-    prediction = model.predict(input_data)
-    return prediction
+    prediction = model.predict(input_df['text'])
+    return prediction[0]
 
 # Streamlit app
 def main():
