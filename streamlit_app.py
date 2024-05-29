@@ -13,6 +13,22 @@ from nltk.stem import WordNetLemmatizer
 nltk_data_path = '/cc-streamlit/nltk_data/'
 nltk.data.path.append(nltk_data_path)
 
+required_directories = ['corpora/stopwords', 'corpora/wordnet', 'tokenizers/punkt']
+missing_directories = [d for d in required_directories if not nltk.data.find(d)]
+
+if missing_directories:
+    st.error(f"Missing required NLTK data directories: {missing_directories}. Please ensure they are correctly uploaded to {nltk_data_path}.")
+else:
+    st.success("All required NLTK data directories are present.")
+
+# Download necessary NLTK data if not already present
+try:
+    nltk.download('punkt', download_dir=nltk_data_path)
+    nltk.download('stopwords', download_dir=nltk_data_path)
+    nltk.download('wordnet', download_dir=nltk_data_path)
+except Exception as e:
+    st.error(f"Error downloading NLTK data: {e}")
+
 # Load the pickled model
 model = joblib.load('spam_model.pkl')
 
