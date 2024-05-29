@@ -27,7 +27,8 @@ def main():
         if input_data:
             # Call the predict function with input_data
             prediction = predict(input_data)
-            st.write('Prediction:', prediction)
+            result = 'Spam' if prediction == 1 else 'Ham'
+            st.write('Prediction:', result)
         else:
             st.write('Please enter text for prediction')
 
