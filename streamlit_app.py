@@ -1,19 +1,27 @@
 import streamlit as st
 import pandas as pd
 import joblib
-import sklearn
-
 import nltk
-
-import re
+import os
+from sklearn.pipeline import Pipeline
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 
-nltk.data.path.append('/path/to/your/local/nltk_data')
+# Ensure NLTK uses the local data directory
+nltk_data_path = '/path/to/your/local/nltk_data'
+if os.path.exists(nltk_data_path):
+    nltk.data.path.append(nltk_data_path)
+else:
+    # If nltk_data_path does not exist, download necessary data
+    nltk.download('punkt')
+    nltk.download('stopwords')
+    nltk.download('wordnet')
 
+# Load the pickled model
 model = joblib.load('spam_model.pkl')
 
+# Define preprocessing function
 def preprocess_text(text):
     lemmatizer = WordNetLemmatizer()
     stop_words = set(stopwords.words('english'))
@@ -31,6 +39,7 @@ def preprocess_text(text):
     
     return ' '.join(tokens)
 
+# Define a function to make predictions using the loaded model
 def predict(input_data):
     # Ensure input_data is in a DataFrame
     input_df = pd.DataFrame([input_data], columns=['text'])
