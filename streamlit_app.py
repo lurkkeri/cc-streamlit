@@ -4,14 +4,13 @@ import joblib
 import sklearn
 
 import nltk
-nltk.download('punkt')
-nltk.download('stopwords')
-nltk.download('wordnet')
 
 import re
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
+
+nltk.data.path.append('/path/to/your/local/nltk_data')
 
 model = joblib.load('spam_model.pkl')
 
