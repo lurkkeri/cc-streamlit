@@ -5,6 +5,8 @@ import joblib
 # Load the pickled model
 model = joblib.load('spam_model.pkl')
 
+print(model)
+
 # Define a function to make predictions using the loaded model
 def predict(input_data):
     # Perform any necessary preprocessing on the input_data
