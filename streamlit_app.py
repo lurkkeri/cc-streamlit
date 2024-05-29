@@ -10,7 +10,7 @@ from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 
 # Set NLTK data path
-nltk_data_path = '/cc-streamlit/ntkl_data/ntkl_data/'
+nltk_data_path = '/cc-streamlit/nltk_data/nltk_data/'
 nltk.data.path.append(nltk_data_path)
 
 # Load the pickled model
