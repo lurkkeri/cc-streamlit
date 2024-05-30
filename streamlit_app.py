@@ -14,7 +14,9 @@ nltk_data_path = '/cc-streamlit/nltk_data/'
 nltk.data.path.append(nltk_data_path)
 
 required_directories = ['corpora/stopwords', 'corpora/wordnet', 'tokenizers/punkt']
-missing_directories = [d for d in required_directories if not nltk.data.find(d)]
+# missing_directories = [d for d in required_directories if not nltk.data.find(d)]
+missing_directories = [d for d in required_directories if not os.path.exists(os.path.join(nltk_data_path, d))]
+
 
 if missing_directories:
     st.error(f"Missing required NLTK data directories: {missing_directories}. Please ensure they are correctly uploaded to {nltk_data_path}.")
