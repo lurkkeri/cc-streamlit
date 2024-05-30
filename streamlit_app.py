@@ -26,11 +26,6 @@ for d in required_directories:
 print("NLTK data path:", nltk.data.path)
 print("Missing directories:", missing_directories)
 
-if missing_directories:
-    nltk.download('stopwords', download_dir=nltk_data_path)
-    nltk.download('wordnet', download_dir=nltk_data_path)
-    nltk.download('punkt', download_dir=nltk_data_path)
-
 # Load the pickled model
 model = joblib.load('spam_model.pkl')
 
