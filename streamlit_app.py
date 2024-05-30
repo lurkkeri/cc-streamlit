@@ -74,7 +74,7 @@ def predict(input_data):
 
 # Streamlit app
 def main():
-    st.title('Streamlit App with Pickle Model')
+    st.title('Are your words ham or spam?')
 
     # Add input components (e.g., text input, file upload, etc.)
     input_data = st.text_input('Enter text for prediction:')
