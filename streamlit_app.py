@@ -10,10 +10,15 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 
-# Set NLTK data path
-nltk_data_path = 'cc-streamlit/nltk_data/'
-#nltk_data_path = 'C:\\Users\\Oona\\AppData\\Roaming\\nltk_data'
+
+cwd = os.getcwd()
+
+# Set NLTK data path relative to the current working directory
+nltk_data_path = os.path.join(cwd, 'cc-streamlit', 'nltk_data')
+
+# Add the NLTK data path to nltk.data.path
 nltk.data.path.append(nltk_data_path)
+
 
 
 required_directories = ['corpora/stopwords', 'corpora/wordnet', 'tokenizers/punkt']
