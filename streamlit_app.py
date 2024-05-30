@@ -14,7 +14,7 @@ from nltk.stem import WordNetLemmatizer
 cwd = os.getcwd()
 
 # Set NLTK data path relative to the current working directory
-nltk_data_path = os.path.join(cwd, 'cc-streamlit', 'nltk_data')
+nltk_data_path = os.path.join(cwd, 'nltk_data')
 
 # Add the NLTK data path to nltk.data.path
 nltk.data.path.append(nltk_data_path)
