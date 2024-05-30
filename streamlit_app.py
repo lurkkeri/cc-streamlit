@@ -19,8 +19,6 @@ nltk_data_path = os.path.join(cwd, 'nltk_data')
 # Add the NLTK data path to nltk.data.path
 nltk.data.path.append(nltk_data_path)
 
-
-
 required_directories = ['corpora/stopwords', 'corpora/wordnet', 'tokenizers/punkt']
 
 missing_directories = []
@@ -33,15 +31,6 @@ for d in required_directories:
 print("NLTK data path:", nltk.data.path)
 print("Missing directories:", missing_directories)
 
-def unzip_wordnet(zip_path, extract_path):
-    with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-        zip_ref.extractall(extract_path)
-
-# Check if wordnet is unzipped, if not, unzip it
-wordnet_zip_path = os.path.join(nltk_data_path, 'corpora/wordnet.zip')
-wordnet_extract_path = os.path.join(nltk_data_path, 'corpora/wordnet')
-if not os.path.exists(wordnet_extract_path):
-    unzip_wordnet(wordnet_zip_path, wordnet_extract_path)
 
 if missing_directories:
     for directory in missing_directories:
