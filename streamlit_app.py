@@ -14,7 +14,7 @@ from nltk.stem import WordNetLemmatizer
 nltk_data_path = '/cc-streamlit/nltk_data/'
 #nltk_data_path = 'C:\\Users\\Oona\\AppData\\Roaming\\nltk_data'
 nltk.data.path.append(nltk_data_path)
-zip_path = '/cc-streamlit/nltk_data/corpora/'
+zip_path = '/cc-streamlit/nltk_data/corpora/wordnet.zip'
 extract_path = '/cc-streamlit/nltk_data/corpora/'
 
 
@@ -34,11 +34,8 @@ def unzip_wordnet(zip_path, extract_path):
     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
         zip_ref.extractall(extract_path)
 
-# Check if wordnet is unzipped, if not, unzip it
-wordnet_zip_path = os.path.join(nltk_data_path, 'corpora/wordnet.zip')
-wordnet_extract_path = os.path.join(nltk_data_path, 'corpora/wordnet')
-if not os.path.exists(wordnet_extract_path):
-    unzip_wordnet(wordnet_zip_path, wordnet_extract_path)
+if not os.path.exists(extract_path):
+    unzip_wordnet(zip_path, extract_path)
 
 if missing_directories:
     for directory in missing_directories:
