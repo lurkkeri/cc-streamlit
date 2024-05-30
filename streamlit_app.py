@@ -11,7 +11,7 @@ from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 
 # Set NLTK data path
-nltk_data_path = '/cc-streamlit/nltk_data/'
+nltk_data_path = '/nltk_data/'
 #nltk_data_path = 'C:\\Users\\Oona\\AppData\\Roaming\\nltk_data'
 nltk.data.path.append(nltk_data_path)
 
@@ -33,7 +33,7 @@ def unzip_wordnet(zip_path, extract_path):
         zip_ref.extractall(extract_path)
 
 # Check if wordnet is unzipped, if not, unzip it
-wordnet_zip_path = 'https://github.com/lurkkeri/cc-streamlit/blob/main/nltk_data/corpora/wordnet.zip'
+wordnet_zip_path = os.path.join(nltk_data_path, 'corpora/wordnet.zip')
 wordnet_extract_path = os.path.join(nltk_data_path, 'corpora/wordnet')
 if not os.path.exists(wordnet_extract_path):
     unzip_wordnet(wordnet_zip_path, wordnet_extract_path)
