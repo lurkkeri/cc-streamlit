@@ -14,7 +14,7 @@ from nltk.stem import WordNetLemmatizer
 nltk_data_path = '/cc-streamlit/nltk_data/'
 #nltk_data_path = 'C:\\Users\\Oona\\AppData\\Roaming\\nltk_data'
 nltk.data.path.append(nltk_data_path)
-zip_path = '/cc-streamlit/nltk_data/corpora/wordnet.zip'
+zip_path = '/cc-streamlit/nltk_data/corpora/'
 extract_path = '/cc-streamlit/nltk_data/corpora/'
 
 
